@@ -14,7 +14,7 @@ Check [WIKI](https://github.com/gogetssl/api/wiki) for description of all API me
 
 ### Suggestions, Bugs, Issues, New Features
 You are highly welcome to send us requests for new features, suggestions, issues or any possible bugs found
-[Submittion form](hhttps://github.com/gogetssl/api/issues/)
+[Submittion form](https://github.com/gogetssl/api/issues/)
 
 ### License
 This project is licensed under the MIT License
