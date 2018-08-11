@@ -8,6 +8,9 @@ partners to directly order and manage their SSL certificates. API clients can
 perform functions such as ordering the different products, canceling and fulfilling orders, and
 querying for order data, querying for account details data. 
 
+### API
+URL: https://my.gogetssl.com/api/
+
 ### Prerequisites
 - Account at [GOGETSSL.com](https://www.gogetssl.com)
 
