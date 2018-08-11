@@ -1,6 +1,12 @@
 ![alt text](https://my.gogetssl.com/assets/img/logo_for_github.png "Logo Title Text 1")
 # GOGETSSL API Documentation
-Order and manage SSL certificates, Seals & Scanners using our API
+Order and manage SSL certificates, Seals & Scanners using our API.
+
+### Overview
+We offer a REST Request Format API with JavaScript Object Notation (JSON) response format for our
+partners to directly order and manage their SSL certificates. API clients can
+perform functions such as ordering the different products, canceling and fulfilling orders, and
+querying for order data, querying for account details data. 
 
 ### Prerequisites
 - Account at [GOGETSSL.com](https://www.gogetssl.com)
