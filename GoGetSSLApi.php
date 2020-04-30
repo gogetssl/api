@@ -244,7 +244,7 @@ class GoGetSSLApi
     public function getTotalOrders()
     {
         if (!$this->key) {
-            throw new GoGetSSLAuthException ();
+            throw new GoGetSSLAuthException();
         }
 
         return $this->call('/account/total_orders/', ['auth_key' => $this->key]);
@@ -271,7 +271,7 @@ class GoGetSSLApi
     public function getTotalTransactions()
     {
         if (!$this->key) {
-            throw new GoGetSSLAuthException ();
+            throw new GoGetSSLAuthException();
         }
 
         return $this->call('/account/total_transactions/', ['auth_key' => $this->key]);
