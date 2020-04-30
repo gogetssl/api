@@ -1,18 +1,5 @@
 <?php
 
-/**
- * Use any way you want. Free for all
- *
- * @version 1.1
- * */
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-define('DEBUG', 'TRUE');
-
-//define('DEBUG', 'FALSE');
-
 class GoGetSSLApi {
 
     protected $apiUrl = 'https://my.gogetssl.com/api';
@@ -20,8 +7,8 @@ class GoGetSSLApi {
     protected $lastStatus;
     protected $lastResponse;
 
-    public function __construct($key = null, $apiUrl = null) {
-        $this->key = isset($key) ? $key : null;
+    public function __construct($key = null) {
+        $this->key = $key != null ? $key : null;
     }
 
     public function auth($user, $pass) {
@@ -139,8 +126,8 @@ class GoGetSSLApi {
 
         return $this->call('/tools/webservers/' . (int) $type, $getData);
     }
-    
-    public function getDomainAlternative($csr = null) {
+
+    public function getDomainAlternative($csr) {
         if (!$this->key) {
             throw new GoGetSSLAuthException ();
         } else {
@@ -149,7 +136,9 @@ class GoGetSSLApi {
             );
         }
 
-        $postData ['csr'] = $csr;
+        if ($csr) {
+            $postData ['csr'] = trim($csr);
+        }
 
         return $this->call('/tools/domain/alternative/', $getData, $postData);
     }
@@ -223,7 +212,7 @@ class GoGetSSLApi {
 
         return $this->call('/products/', $getData);
     }
-    
+
     public function getProduct($productId) {
         if (!$this->key) {
             throw new GoGetSSLAuthException ();
@@ -235,7 +224,7 @@ class GoGetSSLApi {
 
         return $this->call('/products/ssl/' . $productId, $getData);
     }
-    
+
     public function getProducts() {
         if (!$this->key) {
             throw new GoGetSSLAuthException ();
@@ -379,7 +368,7 @@ class GoGetSSLApi {
 
         return $this->call('/orders/add_ssl_order1/', $getData, $data);
     }
-    
+
     public function addSSLOrder($data) {
         if (!$this->key) {
             throw new GoGetSSLAuthException ();
@@ -427,7 +416,7 @@ class GoGetSSLApi {
 
         return $this->call('/orders/ssl/activate/' . (int) $orderId, $getData);
     }
-    
+
     public function addSandboxAccount($data) {
         if (!$this->key) {
             throw new GoGetSSLAuthException ();
@@ -437,7 +426,7 @@ class GoGetSSLApi {
             );
         }
 
-        return $this->call('/accounts/sandbox/add/', $getData, $data);        
+        return $this->call('/accounts/sandbox/add/', $getData, $data);
     }
 
     public function getOrderStatus($orderId) {
@@ -535,7 +524,7 @@ class GoGetSSLApi {
         return $this->call('/tools/csr/generate/', $getData, $data);
     }
 
-    protected function call($uri, $getData = array(), $postData = array(), $forcePost = false, $isFile = false) {        
+    protected function call($uri, $getData = array(), $postData = array(), $forcePost = false, $isFile = false) {
         $url = $this->apiUrl . $uri;
         if (!empty($getData)) {
             foreach ($getData as $key => $value) {
@@ -560,26 +549,12 @@ class GoGetSSLApi {
 
         $result = curl_exec($c);
 
-        if (DEBUG == 'TRUE') {
-            echo "\n\n";
-            echo "===============\n";
-            echo __FILE__ . "\n";
-            echo "===============\n\n";
-            echo "url = " . $url . "\n\n";
-            echo "queryData = " . urldecode($queryData) . "\n\n";
-            echo "getData = \n";
-            print_r($getData) . "\n\n";
-            echo "postData = \n";
-            print_r($postData) . "\n\n";
-            echo "result GoGetSslApi = \n";
-            print_r(json_decode($result, true));
-            echo "\n\n";
-        }
-
         $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-        curl_close($c);
+		curl_close($c);
+		
         $this->lastStatus = $status;
-        $this->lastResponse = json_decode($result, true);
+		$this->lastResponse = json_decode($result, true);
+		
         return $this->lastResponse;
     }
 
@@ -598,5 +573,4 @@ class GoGetSSLAuthException extends Exception {
     public function __construct() {
         parent::__construct('Please authorize first');
     }
-
 }
