@@ -303,16 +303,7 @@ class GoGetSSLApi
 
         return $this->call("/orders/ssl/reissue/{$orderId}", ['auth_key' => $this->key], $data);
     }
-
-    public function activateSSLOrder($orderId)
-    {
-        if (!$this->key) {
-            throw new GoGetSSLAuthException();
-        }
-
-        return $this->call("/orders/ssl/activate/{$orderId}", ['auth_key' => $this->key]);
-    }
-
+    
     public function addSandboxAccount($data)
     {
         if (!$this->key) {
