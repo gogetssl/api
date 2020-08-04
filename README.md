@@ -18,7 +18,7 @@ URL: https://my.gogetssl.com/api/
 Check [WIKI](https://github.com/gogetssl/api/wiki) for description of all API methods nad features
 
 ### Postman 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/5593375/T1Dwaszy?version=latest#5cb4cce6-4a1c-49c0-bd0d-6f82297f437b)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/5593375/T1Dwaszy?version=latest)
 
 ### API Credentials
 - Please generate API password at [Client area](https://my.gogetssl.com) -> Reseller Modules -> API settings
